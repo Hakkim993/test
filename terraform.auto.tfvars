@@ -1,0 +1,14 @@
+rg_name                = "mytestrg"
+rg_location            = "East US"
+vnet1_name             = "my-vnet-1"
+vnet1_address_space    = ["10.0.0.0/16"]
+vnet1_subnet1_name      = "my-subnet-1"
+vnet1_subnet1_address_prefix = "10.0.1.0/24"
+vnet1_subnet2_name      = "my-subnet-2"
+vnet1_subnet2_address_prefix = "10.0.2.0/24"
+vnet2_name             = "my-vnet-2"
+vnet2_address_space    = ["10.1.0.0/16"]
+vnet2_subnet1_name      = "my-subnet-21"
+vnet2_subnet1_address_prefix = "10.1.1.0/24"
+vnet2_subnet2_name      = "my-subnet-22"
+vnet2_subnet2_address_prefix = "10.1.2.0/24"
