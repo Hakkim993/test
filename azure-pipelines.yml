@@ -30,7 +30,7 @@ stages:
           backendAzureRmStorageAccountName: 'devsa2024'
           backendAzureRmContainerName: 'devtf'
           backendAzureRmKey: 'terraform.tfstate'
-- stage: 'terraform plan'
+- stage: 'terraformplan'
   displayName: 'Terraform plan'
   jobs:
     - job: 'terraformplan'
