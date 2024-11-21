@@ -1,0 +1,47 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+ - name: serviceconnection
+   value: myspn
+
+stages:
+- stage: 'terraforminit'
+  displayName: 'terraform init'
+  jobs:
+    - job: 'terraforminit'
+      displayName: 'Terraform init'
+      steps:
+      - task: TerraformTaskV4@4
+        inputs:
+          provider: 'azurerm'
+          command: 'init'
+          workingDirectory: '$(Build.SourcesDirectory)'
+          backendServiceArm: $(serviceconnection)
+          backendAzureRmResourceGroupName: 'mytestrg'
+          backendAzureRmStorageAccountName: 'devsa2024'
+          backendAzureRmContainerName: 'devtf'
+          backendAzureRmKey: 'terraform.tfstate'
+- stage: 'terraform plan'
+  displayName: 'Terraform plan'
+  jobs:
+    - job: 'terraformplan'
+      displayName: 'tf plan'
+      continueOnError: false
+      steps:
+        - task: TerraformTaskV4@4
+          displayName: 'terrraformplan'
+          inputs:
+            provider: 'azurerm'
+            command: 'plan'
+            workingDirectory: '$(Build.SourcesDirectory)'
+            environmentServiceNameAzureRM: $(serviceconnection)
+
